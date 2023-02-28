@@ -4,12 +4,30 @@ import os
 import requests
 import webbrowser
 
+import fade
+from colorama import Fore, init, Style
+init(autoreset=True)
+v = '2.0'
+L = instaloader.Instaloader()
+
+banner = fade.fire('''
+ .d8888b.  888    888 Y88b   d88P  .d8888b.  8888888b.         d8888 888b     d888 
+d88P  Y88b 888    888  Y88b d88P  d88P  Y88b 888   Y88b       d88888 8888b   d8888 
+Y88b.      888    888   Y88o88P   888    888 888    888      d88P888 88888b.d88888 
+ "Y888b.   8888888888    Y888P    888        888   d88P     d88P 888 888Y88888P888 
+    "Y88b. 888    888     888     888  88888 8888888P"     d88P  888 888 Y888P 888 
+      "888 888    888     888     888    888 888 T88b     d88P   888 888  Y8P  888 
+Y88b  d88P 888    888     888     Y88b  d88P 888  T88b   d8888888888 888   "   888 
+ "Y8888P"  888    888     888      "Y8888P88 888   T88b d88P     888 888       888 
+                                                                                   
+''')
+
 def photo():
     global path
     global username
     bot = instaloader.Instaloader()
     path = os.getcwd()  # Obtain the actual directory path
-    username = input("Instert Instagram account: @")
+    username = input(f"Instert Instagram account: {Fore.CYAN}@"+Fore.RESET)
     print(bot.download_profile(username, profile_pic_only=True))
 
 def detect_file():  # Trying to detect the .jpg file
@@ -34,20 +52,60 @@ def reverse_lookup():  # Upload photo to Google Image Search
     webbrowser.open(fetchUrl)
 
 def database():
-    save = input(f'Do you want to add @{username} to SheGram Database? (y/n): ')
+    save = input(f'Do you want to add {Fore.CYAN}@{username}{Fore.RESET} to SheGram Database? (y/n): ')
+    ID = instaloader.Profile.from_username(L.context, username)
     if (save == 'y'):
         with open(f"{path}/database.txt", "a") as f:
             f.write(f'''
 USERNAME: {username}
-ACCOUNT ID:
+ACCOUNT ID: {ID}
 ====================''')
     if (save == 'n'):
         print('Thanks for using SheGram :)')
         quit()
 
-def fake_account_detection():
-    photo()
-    detect_file()
-    reverse_lookup()
-    database()
+def id_finder():
+    account = input(f'Input the account name: {Fore.CYAN}@'+Fore.RESET)
+    profile = instaloader.Profile.from_username(L.context, account)
+    print(f"The ID for {Fore.CYAN}{account}{Fore.RESET} is: {profile.userid}")
 
+def username_finder():
+    ID = input('Input the account id: ')
+    profile = instaloader.Profile.from_id(L.context, ID)
+    print(f"The Account related with the ID {Fore.CYAN}{ID}{Fore.RESET} is: {profile.username}")
+
+def menu():
+    os.system('cls')
+    print(banner)
+    print(f'''
+    {Fore.RED}╔════════════════════════════╗╔═══════════════════════════════╗
+    {Fore.RED}║{Fore.RESET} [{Fore.CYAN}1{Fore.RESET}] Fake Account Checker   {Fore.RED}║║{Fore.RESET} [{Fore.GREEN}</>{Fore.RESET}] Build By Edu Olivares   {Fore.RED}║
+    {Fore.RED}║{Fore.RESET} [{Fore.CYAN}2{Fore.RESET}] Check SHYGRAM Database {Fore.RED}║║{Fore.RESET} [{Fore.BLUE}-?-{Fore.RESET}] This is the {v} version {Fore.RED}║
+    {Fore.RED}║{Fore.RESET} [{Fore.CYAN}3{Fore.RESET}] Find Username With ID  {Fore.RED}║║{Fore.RESET} [{Fore.YELLOW}-!-{Fore.RESET}] Unther the GPL Licence  {Fore.RED}║
+    {Fore.RED}║{Fore.RESET} [{Fore.CYAN}4{Fore.RESET}] Find ID With Username  {Fore.RED}║║{Fore.RESET} [{Fore.CYAN}_*_{Fore.RESET}] Made In Spain           {Fore.RED}║
+    {Fore.RED}╚════════════════════════════╝╚═══════════════════════════════╝
+    ''')
+    global option
+    option = input(f'Choose a Tool {Fore.YELLOW}>{Fore.CYAN}>{Fore.GREEN}>{Fore.RESET} ')
+    if (option == "1"):
+        os.system('cls')
+        print(banner)
+        photo()
+        detect_file()
+        reverse_lookup()
+        database()
+    if (option == "2"):
+        os.system('cls')
+        print('In Development...')
+        menu()
+    if (option == "3"):
+        os.system('cls')
+        print(banner)
+        username_finder()
+    if (option == "4"):
+        os.system('cls')
+        print(banner)
+        id_finder()
+
+
+menu()

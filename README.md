@@ -8,5 +8,5 @@ Shegram = She (Sherlock) + Gram (Instagram)
 ## TO DO
 - [x] Download Porfile Photo of the acc
 - [x] Analize via Google Image search
-- [ ] Make a Databse with the fake accounts (pastebin)
+- [x] Make a Databse with the fake accounts
 - [ ] Show the results in console + webbrowser
