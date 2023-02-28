@@ -6,5 +6,5 @@
 Shegram = She (Sherlock) + Gram (Instagram)
 
 ## TO DO
-- [] Make a Databse with the fake accounts (pastebin)
-- [] Show the results in console + webbrowser
+- [ ] Make a Databse with the fake accounts (pastebin)
+- [ ] Show the results in console + webbrowser
