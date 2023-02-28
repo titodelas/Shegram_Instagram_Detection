@@ -2,12 +2,13 @@ import instaloader
 import time
 import os
 import requests
+import shutil
 import webbrowser
 
 import fade
 from colorama import Fore, init, Style
 init(autoreset=True)
-v = '2.0'
+v = '2.1'
 L = instaloader.Instaloader()
 
 banner = fade.fire('''
@@ -50,6 +51,7 @@ def reverse_lookup():  # Upload photo to Google Image Search
     response = requests.post(searchUrl, files=multipart, allow_redirects=False)
     fetchUrl = response.headers['Location']
     webbrowser.open(fetchUrl)
+    shutil.rmtree(f'{path}/{username}')
 
 def database():
     save = input(f'Do you want to add {Fore.CYAN}@{username}{Fore.RESET} to SheGram Database? (y/n): ')
