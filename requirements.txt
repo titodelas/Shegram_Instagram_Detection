@@ -1,0 +1,4 @@
+instaloader
+webbrowser
+fade
+colorama

@@ -2,7 +2,6 @@ import instaloader
 import time
 import os
 import requests
-import shutil
 import webbrowser
 
 import fade
