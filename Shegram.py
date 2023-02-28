@@ -51,7 +51,6 @@ def reverse_lookup():  # Upload photo to Google Image Search
     response = requests.post(searchUrl, files=multipart, allow_redirects=False)
     fetchUrl = response.headers['Location']
     webbrowser.open(fetchUrl)
-    shutil.rmtree(f'{path}/{username}')
 
 def database():
     save = input(f'Do you want to add {Fore.CYAN}@{username}{Fore.RESET} to SheGram Database? (y/n): ')
