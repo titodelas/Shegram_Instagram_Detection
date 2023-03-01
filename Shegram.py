@@ -75,6 +75,15 @@ def username_finder():
     profile = instaloader.Profile.from_id(L.context, ID)
     print(f"The Account related with the ID {Fore.CYAN}{ID}{Fore.RESET} is: {profile.username}")
 
+def db_search():
+    u = input(f'Introduce USERNAME or ID to search: {Fore.CYAN}@')
+    print(Fore.RESET)
+    with open('database.txt') as f:
+        if u in f.read():
+            print(f"[{Fore.GREEN}+{Fore.RESET}] {Fore.CYAN}{u}{Fore.RESET} was found in SHEGRAM Database")
+        else:
+            print(f"[{Fore.RED}-{Fore.RESET}] {Fore.CYAN}{u}{Fore.RESET} is not in SHEGRAM Database")
+
 def menu():
     os.system('cls')
     print(banner)
@@ -97,8 +106,8 @@ def menu():
         database()
     if (option == "2"):
         os.system('cls')
-        print('In Development...')
-        menu()
+        print(banner)
+        db_search()
     if (option == "3"):
         os.system('cls')
         print(banner)
