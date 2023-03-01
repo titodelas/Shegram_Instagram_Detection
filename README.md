@@ -47,8 +47,9 @@ webbrowser.open(fetchUrl)
 -  [x] Download Profile Photo of the account
 -  [x] Analyze via Google Image search
 -  [x] Make a Database with the fake accounts
--  [ ] Build a Search tool to find accounts in the Database 
+-  [x] Build a Search tool to find accounts in the Database 
 - [ ] Show the results in console + webbrowser
+- [ ] Autodetect if is a fake account or not
 
 ## Contributing
 
