@@ -26,7 +26,8 @@ def photo():
     global username
     bot = instaloader.Instaloader()
     path = os.getcwd()  # Obtain the actual directory path
-    username = input(f"Instert Instagram account: {Fore.CYAN}@"+Fore.RESET)
+    username = input(f"Instert Instagram account: {Fore.CYAN}@")
+    print(Fore.RESET)
     print(bot.download_profile(username, profile_pic_only=True))
 
 def detect_file():  # Trying to detect the .jpg file
@@ -64,7 +65,8 @@ ACCOUNT ID: {ID}
         quit()
 
 def id_finder():
-    account = input(f'Input the account name: {Fore.CYAN}@'+Fore.RESET)
+    account = input(f'Input the account name: {Fore.CYAN}@')
+    print(Fore.RESET)
     profile = instaloader.Profile.from_username(L.context, account)
     print(f"The ID for {Fore.CYAN}{account}{Fore.RESET} is: {profile.userid}")
 
